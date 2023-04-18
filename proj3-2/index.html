@@ -34,8 +34,11 @@
             <h4 align="middle">./pathtracer -s 256 -l 4 -m ___ -r 480 360 -f mirror_spheres_100.png ../dae/sky/CBspheres.dae</h2>
                 <div align="middle">
                     <table style="width:100%">
-                    <img src="./images/mirror_spheres_0.png" align="middle" width="400px"/>
-                    <figcaption>m=0</figcaption>
+
+
+                            <img src="./images/mirror_spheres_0.png" align="middle" width="400px"/>
+                            <figcaption>m=0</figcaption>
+
                       <tr align="center">
                         <td>
                           <img src="./images/mirror_spheres_1.png" align="middle" width="400px"/>
@@ -104,21 +107,66 @@
             In a few sentences, explain the differences between a pinhole camera model and a thin-lens camera model. 
         </b></p>
         <p>
-            Your response goes here.
-        </p>
+            The main difference between a pinhole camera model and a thinlens camera model is that in a pinhole camera model, everything in the picture is in focus however this does not accurately model what humans see. 
+            The thin-lens model allows us to simulate depth of field effects of cameras and how we as humans actually see by allowing points to be in focus if they lie within the plane of focus of a generated ray that is no longer (0,0,0).
         <br>
         <p><b>
             Show a "focus stack" where you focus at 4 visibly different depths through a scene. Make sure to include all screenshots.
         </b></p>
-        <p>
-            Your response goes here.
-        </p>
+        <div align="middle">
+            <table style="width:100%">
+              <tr align="center">
+                <td>
+                  <img src="./images/tmp1-7.png" align="middle" width="400px"/>
+                  <figcaption>-b 0 (Pinhole Camera Model, everything in focus like in project 3-1)</figcaption>
+                </td>
+                <td>
+                  <img src="./images/tmp1.png" align="middle" width="400px"/>
+                  <figcaption>-b 0.23 -d 4.5 (Focused on closest part of the dragon to lens)</figcaption>
+                </td>
+              </tr>
+              <tr align="center">
+                <td>
+                  <img src="./images/tmp1-6.png" align="middle" width="400px"/>
+                  <figcaption>-b 0.22 -d 4.8 (Focused on middle section of dragon between mouth and tail)</figcaption>
+                </td>
+                <td>
+                  <img src="./images/tmp1-8.png" align="middle" width="400px"/>
+                  <figcaption>-b 0.20 -d 5.2 (Focused on farthest part of dragon near the tail)</figcaption>
+                </td>
+              </tr>
+            </table>
+          </div>
         <br>
         <p><b>
             Show a sequence of 4 pictures with visibly different aperture sizes, all focused at the same point in a scene. Make sure to include all screenshots.
         </b></p>
+        <div align="middle">
+            <table style="width:100%">
+              <tr align="center">
+                <td>
+                  <img src="./images/tmp1.png" align="middle" width="400px"/>
+                  <figcaption>-b 0.23 -d 4.5</figcaption>
+                </td>
+                <td>
+                  <img src="./images/tmp2-1.png" align="middle" width="400px"/>
+                  <figcaption>-b 0.33 -d 4.5</figcaption>
+                </td>
+              </tr>
+              <tr align="center">
+                <td>
+                  <img src="./images/tmp2-2.png" align="middle" width="400px"/>
+                  <figcaption>-b 0.53 -d 4.5</figcaption>
+                </td>
+                <td>
+                  <img src="./images/tmp2-4.png" align="middle" width="400px"/>
+                  <figcaption>-b 0.93 -d 4.5</figcaption>
+                </td>
+              </tr>
+            </table>
+          </div>
         <p>
-            Your response goes here.
+            As the lens radius increases, you see that the amount that is in focus decreases if the focus point stays the same as the tail becomes more and more unclear whereas the torso stays in focus.
         </p>
         <br>
 
