@@ -1,7 +1,128 @@
-<html>
-	<head>
-	</head>
-	<body>
-		Project 3-2 here
-	</body>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<style>  
+    div.padded {  
+      padding-top: 0px;  
+      padding-right: 100px;  
+      padding-bottom: 0.25in;  
+      padding-left: 100px;  
+    }  
+  </style> 
+<title>Josh Aubin & Andy Varela  |  CS 184</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="style.css" media="screen" />
+</head>
+<body>
+<br />
+<h1 align="middle">Assignment 3-2: Additional Features to PathTracer</h1>
+    <h2 align="middle">Josh Aubin & Andy Varela</h2>
+    <h2 align="middle">(Webpage URL)</h2>
+
+    <div class="padded">
+
+        
+        * NOTE: For this project, you will choose TWO out of the four given parts to complete. One of those parts must be Part 1 or Part 2. In other words, you can choose any combination of two parts except the pair (Part 3, Part 4).
+
+
+        <h3 align="middle">Part 1. Mirror and Glass Materials</h3>
+
+        <p><b>
+            Show a sequence of six images of scene `CBspheres.dae` rendered with `max_ray_depth` set to 0, 1, 2, 3, 4, 5, and 100. The other settings should be at least 64 samples per pixel and 4 samples per light. Make sure to include all screenshots.
+        </b></p>
+        <p>
+            <h4 align="middle">./pathtracer -s 256 -l 4 -m ___ -r 480 360 -f mirror_spheres_100.png ../dae/sky/CBspheres.dae</h2>
+                <div align="middle">
+                    <table style="width:100%">
+                    <img src="./images/mirror_spheres_0.png" align="middle" width="400px"/>
+                    <figcaption>m=0</figcaption>
+                      <tr align="center">
+                        <td>
+                          <img src="./images/mirror_spheres_1.png" align="middle" width="400px"/>
+                          <figcaption>m = 1</figcaption>
+                        </td>
+                        <td>
+                            <img src="./images/mirror_spheres_2.png" align="middle" width="400px">
+                            <figcaption>m = 2</figcaption>
+                        </td> 
+                        <td>
+                            <img src="./images/mirror_spheres_3.png" align="middle" width="400px">
+                            <figcaption>m = 3</figcaption>
+                        </td> 
+                      </tr>
+                      <tr align="center">
+                        <td>
+                            <img src="./images/mirror_spheres_4.png" align="middle" width="400px">
+                            <figcaption>m = 4</figcaption>
+                        </td>
+                        <td>
+                            <img src="./images/mirror_spheres_5.png" align="middle" width="400px">
+                            <figcaption>m = 5</figcaption>
+                        </td>
+                        <td>
+                            <img src="./images/mirror_spheres_100.png" align="middle" width="400px">
+                            <figcaption>m = 100</figcaption>
+                        </td>
+                      </tr>
+                    </table>
+                  </div>
+                  <br>
+        </p>
+        <br>
+        <p><b>
+            Point out the new multibounce effects that appear in each image. 
+        </b></p>
+        <p>
+            At m = 0, we only see the light source because we cannot render objects that reflect the light into the camera.
+            At m = 1, we see the scene but the balls are completely black as there are not enough bounces for reflected/refracted light to hit the camera.
+            At m = 2, we can see an image reflected in the mirror ball on the left, but the refraction ball is still black.
+            At m = 3, the reflective ball now reflects the lit ceiling instead of a shadowy mess. There is also light in the shadow of the refractive ball.
+            At m = 4, the reflective ball finally reflects the refractive ball with accurate color. Also, light is now passing through the refractive ball and onto the blue wall.
+            At m = 5 and m = 100, as we increase the number of bounces, the light in the refractive ball starts to scatter more.
+        </p>
+        <br>
+        <p><b>
+            Explain how these bounce numbers relate to the particular effects that appear. Make sure to include all screenshots.
+        </b></p>
+        <p>
+            When we only allow one bounce, no light can bounce from an object to the balls and finally to the camera, so we see the balls rendered as completely black.
+            When we increase the ray depth to 2, we can see the reflected light on the left ball, but because entering and exiting the refraction ball is two bounces, we still see the refractive ball as black.
+            When we get to m = 3 we now have enough ray depth to render light that travels through the refractive ball and to the camera so it is rendered. We also can now see the lit ceiling in the 
+            reflective ball because we see light that follows the path source -> ground/ball -> ceiling -> ball -> camera.
+            At m = 4 we can see the reflection of the refractive ball because we can see light that follows the path source -> surface -> enter refractive ball -> exit refractive ball -> reflective ball -> camera.
+            At m = 5 and m = 100, because we process more bounces, we have more instances of light entering the refractive ball, exiting, and making it to the camera, so the image in the refractive ball is generally busier and more scattered.
+        </p>
+        <br>
+
+
+
+        <h3 align="middle">Part 4. Depth of Field</h3>
+        <b>
+            For these subparts, we recommend using a microfacet BSDF scene to show off the cool out of focus effects you can get with depth of field!
+        </b>
+        <p><b>
+            In a few sentences, explain the differences between a pinhole camera model and a thin-lens camera model. 
+        </b></p>
+        <p>
+            Your response goes here.
+        </p>
+        <br>
+        <p><b>
+            Show a "focus stack" where you focus at 4 visibly different depths through a scene. Make sure to include all screenshots.
+        </b></p>
+        <p>
+            Your response goes here.
+        </p>
+        <br>
+        <p><b>
+            Show a sequence of 4 pictures with visibly different aperture sizes, all focused at the same point in a scene. Make sure to include all screenshots.
+        </b></p>
+        <p>
+            Your response goes here.
+        </p>
+        <br>
+
+    </div>
+</body>
 </html>
+
